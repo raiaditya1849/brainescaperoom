@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Brain Escape Room</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <h2 id="score">Score: 0</h2>
+
+    <h2 id="timer">Time Left: 300s</h2>
+
+    <h2 id="recordDisplay">
+        🏆 No Record Yet
+    </h2>
+
+    <div id="progressContainer">
+
+        <div id="progressBar">
+
+        </div>
+
+    </div>
+
+<h3 id="progressText">
+    Progress: 0%
+</h3>
+
+    <div id="startScreen">
+
+        <h1>🧠 Brain Escape Room</h1>
+
+        <p>
+            An advanced AI has locked the world's knowledge
+            inside a digital vault.
+            Solve the challenges,
+            collect secret codes,
+            and defeat the AI system.
+        </p>
+
+<h3>Select Difficulty</h3>
+
+<select id="difficulty">
+    <option value="300">🟢 Easy (300s)</option>
+    <option value="180">🟡 Normal (180s)</option>
+    <option value="120">🔴 Hard (120s)</option>
+</select>
+
+<br><br>
+
+        <button onclick="startGame()">
+            Start Game
+        </button>
+
+    </div>
+
+    <!-- LEVEL 1 -->
+
+    <div id="level1" style="display:none;">
+
+        <h1>📚 Level 1: Mathematics Chamber</h1>
+
+        <h3 id="mathCounter">
+            Question 1 / 5
+        </h3>
+
+        <p id="mathQuestion">
+            Question will appear here
+        </p>
+
+        <input type="text" id="answer">
+
+        <br>
+
+        <button onclick="checkAnswer()">
+            Submit
+        </button>
+
+    </div>
+
+    <!-- LEVEL 2 -->
+
+    <div id="level2" style="display:none;">
+
+        <h1>🧩 Level 2: Logic Chamber</h1>
+
+        <h3 id="logicCounter">
+            Question 1 / 5
+        </h3>
+
+        <p id="logicQuestion">
+            Question will appear here
+        </p>
+
+        <input type="text" id="answer2">
+
+        <br>
+
+        <button onclick="checkLevel2()">
+            Submit
+        </button>
+
+    </div>
+
+    <!-- LEVEL 3 -->
+
+    <div id="level3" style="display:none;">
+
+    <h1>🧠 Level 3: Riddle Chamber</h1>
+
+    <h3 id="riddleCounter">
+        Question 1 / 5
+    </h3>
+
+    <p id="riddleQuestion">
+        Riddle will appear here
+    </p>
+
+    <input type="text" id="answer3">
+
+    <br>
+
+    <button onclick="checkLevel3()">
+        Submit
+    </button>
+
+<button onclick="showHint()">
+    💡 Show Hint (-3 Points)
+</button>
+
+<p id="hintText"></p>
+
+</div>
+
+<div id="memoryLevel" style="display:none;">
+
+    <h1>🧠 Level 4: Memory Chamber</h1>
+
+    <p id="memorySequence">
+        Sequence will appear here
+    </p>
+
+    <input type="text" id="memoryAnswer">
+
+    <br>
+
+    <button onclick="checkMemory()">
+        Submit
+    </button>
+
+</div>
+
+    <!-- VAULT -->
+
+    <div id="vault" style="display:none;">
+
+        <h1>🔐 Final Vault</h1>
+
+        <p>
+            Enter the secret code collected from previous levels.
+        </p>
+
+        <input type="text" id="vaultCode">
+
+        <br>
+
+        <button onclick="checkVault()">
+            Unlock Vault
+        </button>
+
+    </div>
+
+    <!-- VICTORY -->
+
+    <div id="victory" style="display:none;">
+
+        <h1 id="victoryTitle">
+    🏆 Congratulations!
+</h1>
+
+        <p>
+            You escaped the Lost Knowledge Vault!
+        </p>
+
+        <p>
+            Your intelligence has saved the day.
+        </p>
+
+        <h2 id="finalScore"></h2>
+
+        <h2 id="escapeTime"></h2>
+
+        <h2 id="victoryDifficulty"></h2>
+
+        <h2 id="victoryRecord"></h2>
+
+        <h2>🏅 Achievements</h2>
+
+<div id="achievements"></div>
+
+<h2>📊 Statistics</h2>
+
+<div id="statsDisplay"></div>
+
+        <h2 id="medal"></h2>
+
+        <button onclick="playAgain()">
+    🔄 Play Again
+</button>
+
+    </div>
+
+    <audio id="correctSound" src="sounds/correct.mp3"></audio>
+
+<audio id="wrongSound" src="sounds/wrong.mp3"></audio>
+
+<audio id="levelupSound" src="sounds/levelup.mp3"></audio>
+
+<audio id="unlockSound" src="sounds/unlock.mp3"></audio>
+
+<audio id="victorySound" src="sounds/victory.mp3"></audio>
+
+<audio id="timeupSound" src="sounds/timeup.mp3"></audio>
+
+<div id="gameOver" style="display:none;">
+
+    <h1>💀 GAME OVER</h1>
+
+    <p>
+        Time Expired!
+    </p>
+
+    <h2 id="gameOverScore"></h2>
+
+    <h3 id="gameOverDifficulty"></h3>
+
+    <h3 id="gameOverRecord"></h3>
+
+    <button onclick="playAgain()">
+        🔄 Play Again
+    </button>
+
+</div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
