@@ -1,0 +1,278 @@
+body
+{
+    background: linear-gradient(to bottom, #000428, #004e92);
+
+    color: white;
+
+    font-family: Arial, sans-serif;
+
+    text-align: center;
+
+    min-height: 100vh;
+
+    margin: 0;
+
+    padding: 20px;
+}
+
+h1
+{
+    color: #00ffff;
+
+    text-shadow:
+        0 0 10px #00ffff,
+        0 0 20px #00ffff,
+        0 0 30px #00ffff;
+
+    margin-top: 40px;
+}
+
+h2
+{
+    margin: 10px;
+}
+
+p
+{
+    font-size: 22px;
+
+    line-height: 1.5;
+}
+
+input
+{
+
+    display: inline-block;
+
+
+    padding: 12px;
+
+    width: 250px;
+
+    border-radius: 10px;
+
+    border: none;
+
+    font-size: 18px;
+
+    text-align: center;
+
+    margin-top: 10px;
+}
+
+button
+{
+    padding: 12px 25px;
+
+    margin-top: 20px;
+
+    font-size: 18px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    background: cyan;
+
+    color: black;
+
+    font-weight: bold;
+
+    transition: 0.3s;
+}
+
+button:hover
+{
+    transform: scale(1.1);
+
+    box-shadow:
+        0 0 10px cyan,
+        0 0 20px cyan;
+}
+
+#score
+{
+    color: yellow;
+
+    text-shadow:
+        0 0 10px yellow;
+}
+
+#timer
+{
+    color: #00ff00;
+
+    text-shadow:
+        0 0 10px #00ff00;
+}
+
+#level1,
+#level2,
+#level3,
+#memoryLevel,
+#vault,
+#victory,
+#gameOver,
+#startScreen
+{
+    max-width: 700px;
+    margin: auto;
+}
+
+#mathCounter,
+#logicCounter,
+#riddleCounter
+{
+    color: #ffd700;
+}
+
+#progressContainer
+{
+    width: 80%;
+
+    max-width: 600px;
+
+    height: 25px;
+
+    background: #333;
+
+    margin: 20px auto;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+}
+
+#progressBar
+{
+    width: 0%;
+
+    height: 100%;
+
+    background: lime;
+
+    transition: 0.5s;
+}
+
+#progressText
+{
+    color: white;
+}
+
+select
+{
+    padding: 10px;
+
+    font-size: 18px;
+
+    border-radius: 10px;
+
+    text-align: center;
+}
+
+.correctGlow
+{
+    animation: glowGreen 0.8s;
+}
+
+@keyframes glowGreen
+{
+    0%
+    {
+        box-shadow: 0 0 0px lime;
+    }
+
+    50%
+    {
+        box-shadow:
+            0 0 20px lime,
+            0 0 40px lime;
+    }
+
+    100%
+    {
+        box-shadow: 0 0 0px lime;
+    }
+}
+
+.wrongShake
+{
+    animation: shakeRed 0.5s;
+    box-shadow: 0 0 20px red;
+    border: 2px solid red;
+}
+
+@keyframes shakeRed
+{
+    0%   { transform: translateX(0); }
+    20%  { transform: translateX(-10px); }
+    40%  { transform: translateX(10px); }
+    60%  { transform: translateX(-10px); }
+    80%  { transform: translateX(10px); }
+    100% { transform: translateX(0); }
+}
+
+.levelComplete
+{
+    animation: levelFlash 1s;
+}
+
+@keyframes levelFlash
+{
+    0%
+    {
+        background-color: transparent;
+    }
+
+    50%
+    {
+        background-color: rgba(0,255,0,0.3);
+    }
+
+    100%
+    {
+        background-color: transparent;
+    }
+}
+
+.victoryPulse
+{
+    animation: trophyPulse 1.5s infinite;
+}
+
+@keyframes trophyPulse
+{
+    0%
+    {
+        transform: scale(1);
+    }
+
+    50%
+    {
+        transform: scale(1.15);
+    }
+
+    100%
+    {
+        transform: scale(1);
+    }
+}
+
+#finalScore
+{
+    color: gold;
+
+    text-shadow:
+        0 0 10px gold,
+        0 0 20px gold;
+}
+
+#memorySequence
+{
+    font-size: 32px;
+    color: cyan;
+    font-weight: bold;
+    letter-spacing: 8px;
+}
