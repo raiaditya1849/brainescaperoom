@@ -126,7 +126,7 @@
         Submit
     </button>
 
-<button onclick="showHint()">
+<button id="hintButton" onclick="showHint()">
     💡 Show Hint (-3 Points)
 </button>
 
@@ -242,6 +242,51 @@
         🔄 Play Again
     </button>
 
+</div>
+
+<div id="levelCompleteScreen" style="display:none;">
+
+    <div class="celebrationBox">
+
+        <div id="confettiContainer"></div>
+
+        <h1 id="celebrationTitle">
+            🎉 LEVEL COMPLETE
+        </h1>
+
+        <h2 id="celebrationSubtitle">
+        </h2>
+
+        <h3>
+            🔐 Secret Digit Found
+        </h3>
+
+        <div id="secretDigitReveal">
+            ?
+        </div>
+
+        <h3 id="scoreAward">
+            +10 Score Awarded
+        </h3>
+
+        <button id="continueButton">
+            Continue
+        </button>
+
+    </div>
+
+</div>
+
+<div id="wrongPopup">
+    <div class="wrongContent">
+
+        <h1>😔</h1>
+
+        <h2>Wrong Answer</h2>
+
+        <p>-1 Point Deducted</p>
+
+    </div>
 </div>
 
     <script src="script.js"></script>

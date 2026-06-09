@@ -301,6 +301,8 @@ let usedRiddleQuestions = [];
 
 let hintUsed = false;
 
+let answerRevealed = false;
+
 let digit1;
 let digit2;
 let digit3;
@@ -327,6 +329,13 @@ usedAnyHint = false;
 achievements = [];
 
 hintUsed = false;
+
+answerRevealed = false;
+
+document.querySelector(
+    "#level3 button:nth-of-type(2)"
+).innerHTML =
+"💡 Show Hint (-3 Points)";
 
 updateProgress(0);
 
@@ -454,17 +463,26 @@ setTimeout(function()
 
 document.getElementById("levelupSound").play();
 
-            alert("Level 1 Complete! 🎉\n\nSecret Digit = " + digit1);
-
             updateScore(10);
 
-            updateProgress(25);
+updateProgress(25);
 
-            document.getElementById("level1").style.display = "none";
+showLevelComplete(
+    "Mathematics Chamber",
+    digit1,
+    function()
+    {
+        document.getElementById(
+            "level1"
+        ).style.display = "none";
 
-            document.getElementById("level2").style.display = "block";
+        document.getElementById(
+            "level2"
+        ).style.display = "block";
 
-            loadLogicQuestion();
+        loadLogicQuestion();
+    }
+);
         }
     }
    else
@@ -484,7 +502,12 @@ setTimeout(function()
     document.getElementById("answer")
         .classList.remove("wrongShake");
 
-    alert("❌ Wrong Answer! (-1 Point)");
+    showPenaltyPopup(
+    "😔",
+    "Wrong Answer",
+    "-1 Point Deducted",
+    "#a30000"
+);
 
 }, 500);
 }
@@ -548,17 +571,26 @@ setTimeout(function()
 document.getElementById("levelupSound").play();
 
 
-            alert("Level 2 Complete! 🎉\n\nSecret Digit = " + digit2);
-
             updateScore(10);
 
-            updateProgress(50);
+updateProgress(25);
 
-            document.getElementById("level2").style.display = "none";
+showLevelComplete(
+    "Logic Chamber",
+    digit2,
+    function()
+    {
+        document.getElementById(
+            "level2"
+        ).style.display = "none";
 
-            document.getElementById("level3").style.display = "block";
+        document.getElementById(
+            "level3"
+        ).style.display = "block";
 
-loadRiddleQuestion();
+        loadRiddleQuestion();
+    }
+);
         }
     }
     else
@@ -578,7 +610,12 @@ setTimeout(function()
     document.getElementById("answer2")
         .classList.remove("wrongShake");
 
-    alert("❌ Wrong Answer! (-1 Point)");
+    showPenaltyPopup(
+    "😔",
+    "Wrong Answer",
+    "-1 Point Deducted",
+    "#a30000"
+);
 
 }, 500);
 }
@@ -602,6 +639,15 @@ function loadRiddleQuestion()
     currentRiddleQuestion.question;
 
 document.getElementById("hintText").innerHTML = "";
+
+document.getElementById("hintButton").disabled =
+    false;
+
+document.getElementById("hintButton").innerHTML =
+    "💡 Show Hint (-3 Points)";
+
+document.getElementById("hintButton").onclick =
+    showHint;
 
 hintUsed = false;
 
@@ -646,18 +692,26 @@ setTimeout(function()
 
 document.getElementById("levelupSound").play();
 
-            alert("Level 3 Complete! 🎉\n\nSecret Digit = " + digit3);
-
             updateScore(10);
 
-            updateProgress(75);
+updateProgress(25);
 
-            document.getElementById("level3").style.display = "none";
+showLevelComplete(
+    "Riddle Chamber",
+    digit3,
+    function()
+    {
+        document.getElementById(
+            "level3"
+        ).style.display = "none";
 
-document.getElementById("memoryLevel").style.display =
-    "block";
+        document.getElementById(
+            "memoryLevel"
+        ).style.display = "block";
 
-loadMemoryLevel();
+        loadMemoryLevel();
+    }
+);
         }
     }
     else
@@ -677,7 +731,12 @@ setTimeout(function()
     document.getElementById("answer3")
         .classList.remove("wrongShake");
 
-    alert("❌ Wrong Answer! (-1 Point)");
+    showPenaltyPopup(
+    "😔",
+    "Wrong Answer",
+    "-1 Point Deducted",
+    "#a30000"
+);
 
 }, 500);
 }
@@ -1044,17 +1103,174 @@ function showHint()
 {
     if(!hintUsed)
     {
-
         usedAnyHint = true;
 
         score -= 3;
+
+        showPenaltyPopup(
+    "💡",
+    "Hint Unlocked",
+    "-3 Points",
+    "#cc8400"
+);
 
         document.getElementById("score").innerHTML =
             "Score: " + score;
 
         hintUsed = true;
-    }
 
-    document.getElementById("hintText").innerHTML =
-        "💡 Hint: " + currentRiddleQuestion.hint;
+        document.getElementById("hintText").innerHTML =
+            "💡 Hint: " +
+            currentRiddleQuestion.hint;
+
+        document.getElementById("hintButton").innerHTML =
+            "💀 Reveal Answer (-5 Points)";
+
+        document.getElementById("hintButton").onclick =
+            revealAnswer;
+    }
+}
+
+function revealAnswer()
+{
+    score -= 5;
+
+    showPenaltyPopup(
+    "⚠",
+    "Answer Revealed",
+    "-5 Points",
+    "#7a00cc"
+);
+
+    document.getElementById("score").innerHTML =
+        "Score: " + score;
+
+    document.getElementById("hintText").innerHTML +=
+        "<br><br>✅ Answer: " +
+        currentRiddleQuestion.answer;
+
+    document.getElementById("hintButton").disabled = true;
+
+    document.getElementById("hintButton").innerHTML =
+        "Answer Revealed";
+}
+
+function showPenaltyPopup(
+    emoji,
+    title,
+    message,
+    color
+)
+{
+    let popup =
+        document.getElementById("wrongPopup");
+
+    popup.style.background =
+        color;
+
+    popup.innerHTML =
+
+        "<div class='wrongContent'>" +
+
+        "<h1>" + emoji + "</h1>" +
+
+        "<h2>" + title + "</h2>" +
+
+        "<p>" + message + "</p>" +
+
+        "</div>";
+
+    popup.style.display = "block";
+
+    document.getElementById(
+        "wrongSound"
+    ).play();
+
+    setTimeout(function()
+    {
+        popup.style.display = "none";
+    }, 2500);
+}
+
+function createConfetti()
+{
+    for(let i = 0; i < 120; i++)
+    {
+        let confetti =
+        document.createElement("div");
+
+        confetti.classList.add(
+            "confetti"
+        );
+
+        confetti.style.left =
+            Math.random() * 100 + "%";
+
+        confetti.style.background =
+            `hsl(
+                ${Math.random()*360},
+                100%,
+                50%
+            )`;
+
+        confetti.style.animationDelay =
+            Math.random() * 2 + "s";
+
+        document.body.appendChild(
+            confetti
+        );
+
+        setTimeout(function()
+        {
+            confetti.remove();
+        }, 5000);
+    }
+}
+
+function showLevelComplete(
+    chamberName,
+    secretDigit,
+    nextFunction
+)
+{
+    document.getElementById(
+        "levelCompleteScreen"
+    ).style.display = "flex";
+
+    document.getElementById(
+        "celebrationSubtitle"
+    ).innerHTML =
+    chamberName +
+    " Cleared";
+
+    createConfetti();
+
+    let digitBox =
+    document.getElementById(
+        "secretDigitReveal"
+    );
+
+    digitBox.innerHTML = "?";
+    digitBox.style.transform =
+        "scale(0)";
+
+    setTimeout(function()
+    {
+        digitBox.innerHTML =
+            secretDigit;
+
+        digitBox.style.transform =
+            "scale(1)";
+    }, 1500);
+
+    document.getElementById(
+        "continueButton"
+    ).onclick = function()
+    {
+        document.getElementById(
+            "levelCompleteScreen"
+        ).style.display = "none";
+
+        nextFunction();
+    };
 }
