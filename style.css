@@ -449,3 +449,128 @@ select
         opacity: 1;
     }
 }
+
+html,
+body
+{
+    overflow-x: hidden;
+}
+
+#level1,
+#level2,
+#level3,
+#memoryLevel,
+#vault,
+#victory,
+#gameOver,
+#startScreen
+{
+    min-height: auto;
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+}
+
+@media (max-width: 768px)
+{
+    h1
+    {
+        font-size: 2rem;
+    }
+
+    h2
+    {
+        font-size: 1.2rem;
+    }
+
+    h3
+    {
+        font-size: 1rem;
+    }
+
+    p
+    {
+        font-size: 16px;
+    }
+
+    input
+    {
+        width: 90%;
+
+        max-width: 300px;
+
+        font-size: 16px;
+    }
+
+    button
+    {
+        width: 90%;
+
+        max-width: 320px;
+
+        font-size: 18px;
+
+        padding: 12px;
+    }
+
+    select
+    {
+        width: 90%;
+
+        max-width: 320px;
+    }
+
+    #secretDigitReveal
+    {
+        font-size: 80px;
+    }
+
+    #celebrationTitle
+    {
+        font-size: 40px;
+    }
+}
+
+@media (orientation: landscape)
+and (max-height: 500px)
+{
+    h1
+    {
+        font-size: 1.8rem;
+    }
+
+    p
+    {
+        font-size: 14px;
+    }
+
+    button
+    {
+        margin-top: 10px;
+    }
+
+    #level1,
+    #level2,
+    #level3,
+    #memoryLevel,
+    #vault
+    {
+        padding: 15px;
+    }
+}
+
+p,
+h1,
+h2,
+h3
+{
+    word-wrap: break-word;
+
+    overflow-wrap: break-word;
+}
+
+h1
+{
+    text-wrap: balance;
+}
